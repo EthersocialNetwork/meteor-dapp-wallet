@@ -45,29 +45,82 @@ ethereumConfig = {
   dailyLimitDefault: '100000000000000000000000000'
 };
 
+// known ethereum mainnet networks
+var knownNetworks = {
+  callisto: {
+    type: 'mainnet',
+    hash: '0x82270b80fc90beb005505a9ef95039639968a0e81b2904ad30128c93d713d2c4'
+  },
+  ellasim: {
+    type: 'mainnet',
+    hash: '0x4d7df65052bb21264d6ad2d6fe2d5578a36be12f71bf8d0559b0c15c4dc539b5'
+  },
+  expanse: {
+    type: 'mainnet',
+    hash: '0x2fe75cf9ba10cb1105e1750d872911e75365ba24fdd5db7f099445c901fea895'
+  },
+  music: {
+    type: 'mainnet',
+    hash: '0x4eba28a4ce8dc0701f94c936a223a8429129b38ca9974ec0e92bf9234ac952e9'
+  },
+  ubiq: {
+    type: 'mainnet',
+    hash: '0x406f1b7dd39fca54d8c702141851ed8b755463ab5b560e6f19b963b4047418af'
+  }
+};
+// load known Networks
+if (publicSettings.knownNetworks) {
+  console.log('load known networks...');
+  for (var key in publicSettings.knownNetworks) {
+    knownNetworks[key] = publicSettings.knownNetworks[key];
+  }
+}
+
 /**
 Check and set which network we are on.
 
 @method checkNetwork
 */
 Session.setDefault('network', false);
+Session.setDefault('type', false);
 var checkNetwork = function() {
   web3.eth.getBlock(0).then(function(block) {
     switch (block.hash) {
       case '0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3':
         Session.set('network', 'main');
+        Session.set('type', 'mainnet');
         break;
       case '0x6341fd3daf94b748c72ced5a5b26028f2474f5f00d824504e4fa37a75767e177':
         Session.set('network', 'rinkeby');
+        Session.set('type', 'testnet');
         break;
       case '0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d':
         Session.set('network', 'ropsten');
+        Session.set('type', 'testnet');
         break;
       case '0xa3c565fc15c7478862d50ccd6561e3c06b24cc509bf388941c25ea985ce32cb9':
         Session.set('network', 'kovan');
+        Session.set('type', 'testnet');
         break;
       default:
-        Session.set('network', 'private');
+        var found = false;
+        // search knownNetworks
+        for (var network in knownNetworks) {
+          if (knownNetworks[network].hash == block.hash) {
+            Session.set('network', network);
+            Session.set('type', knownNetworks[network].type);
+            if (publicSettings.networks[network]) {
+              _.extend(publicSettings, publicSettings.networks[network]);
+            }
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          Session.set('network', 'private');
+          Session.set('type', 'privatenet');
+        }
+        break;
     }
   });
 };
