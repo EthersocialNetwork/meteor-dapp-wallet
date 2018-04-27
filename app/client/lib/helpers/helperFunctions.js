@@ -470,7 +470,7 @@ Returns true if Main is the current network.
 @return {Bool}
 **/
 Helpers.isOnMainNetwork = function() {
-  return Session.get('network') == 'main';
+  return Session.get('type') == 'mainnet';
 };
 
 /**
