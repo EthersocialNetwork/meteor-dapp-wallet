@@ -984,3 +984,20 @@ table.transactions {
     margin-right: 3px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .dapp-header {
+    padding-left:5px;
+    padding-right:5px;
+  }
+}
+
+@media screen and (max-width: 1099px) {
+  .dapp-header nav > ul a span,
+  .dapp-header nav > ul a:visited span,
+  .dapp-header nav > ul button span {
+    display: none;
+  }
+}
+
+@import 'custom.import.less';
