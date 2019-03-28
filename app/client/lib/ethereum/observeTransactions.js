@@ -539,8 +539,9 @@ observeTransactions = function() {
           !newDocument.exchangeRates.gbp ||
           !newDocument.exchangeRates.brl)
       ) {
+        let ticker = publicSettings.ticker || 'ETH';
         var url =
-          'https://min-api.cryptocompare.com/data/pricehistorical?fsym=ETH&tsyms=BTC,USD,EUR,GBP,BRL&ts=' +
+          `https://min-api.cryptocompare.com/data/pricehistorical?fsym=${ticker}&tsyms=BTC,USD,EUR,GBP,BRL&ts=` +
           newDocument.timestamp;
 
         if (typeof mist !== 'undefined')

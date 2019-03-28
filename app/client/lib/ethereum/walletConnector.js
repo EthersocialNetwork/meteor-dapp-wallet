@@ -145,6 +145,7 @@ connectToNode = function() {
     if (publicSettings.supportedCurrencies) {
         currencies = publicSettings.supportedCurrencies;
     }
+    options.ticker = publicSettings.ticker || 'ETH';
     options.currencies = currencies;
   }
   EthTools.ticker.start(options);
