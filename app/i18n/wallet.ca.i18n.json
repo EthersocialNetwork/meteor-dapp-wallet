@@ -262,7 +262,7 @@
             "texts": {
                 "ownerPaysGas": "El gas el paga el propietari del wallet de contracte",
                 "sendAmount": "Vols enviar <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Vols enviar <strong>__amount__</strong> __ether__, utilitzant l'intercanvi de <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Que és actualment equivalent a <strong>__etherAmount__</strong> __ether__.",
+                "sendAmountEquivalent": "Vols enviar <strong>__amount__</strong>, utilitzant l'intercanvi de <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Que és actualment equivalent a <strong>__etherAmount__</strong>.",
                 "sendToken": "Vols enviar <strong>__amount__ __symbol__</strong> de <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">Aquesta quantitat supera el restant del límit diari de __limit__ (de __total__ al dia), necessites que __count__ comptes ho confirmin</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">Aquesta quantitat és per sobre del restant del límit diari de __limit__ (de __total__ al dia), necessites que __count__ comptes ho confirmin</p>",
