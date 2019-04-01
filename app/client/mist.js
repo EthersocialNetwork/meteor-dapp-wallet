@@ -10,9 +10,9 @@ updateMistBadge = function() {
     var balance = _.reduce(
       _.pluck(_.union(accounts, wallets), 'balance'),
       function(memo, num) {
-        return memo.plus(BigNumber(num));
+        return memo.plus(new BigNumber(num));
       },
-      BigNumber(0)
+      new BigNumber(0)
     );
 
     mist.menu.setBadge(
